@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Things done tracker</title>
+    <link rel="stylesheet" type="text/css" href="reset.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+    <script src="post.js" defer></script>
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Things done tracker</h1>
+        <div class="project">
+            <div v-if="nameAndSurname">
+                <em>Name and surname: </em> {{ nameAndSurname }}
+            </div>
+            <div v-if="nameAndSurname">
+                <em>Project: </em> {{ projectName }}
+            </div>
+        </div>
+        <done v-for="done in posts" v-bind:donething="done" v-bind:project="projectName"></done>
+        <div class="post">
+            <label for="nameAndSurname">Your name and surname</label>
+            <input value="nameAndSurname" placeholder="ex. E. Gadzhiyev" v-model="nameAndSurname" />
+            <label for="projectName">Project you are working on</label>
+            <input type="text" value="projectName" placeholder="ex.: BMIS" v-model="projectName" />
+            <label for="done">What's done?</label>
+            <div class="new-post">
+                <textarea type="text" value="done" placeholder="Describe things you done"
+                    v-model="whatsDone"></textarea>
+                <button v-on:click="posts.push(whatsDone)">Add</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
